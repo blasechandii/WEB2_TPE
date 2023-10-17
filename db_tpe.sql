@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-09-2023 a las 05:51:09
+-- Tiempo de generación: 17-10-2023 a las 05:16:02
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -40,8 +40,14 @@ CREATE TABLE `periferico` (
 --
 
 INSERT INTO `periferico` (`id`, `marca`, `precio`, `color`, `id_periferico`) VALUES
-(4, 'HyperX', 1233, 'rojo', 'teclado'),
-(5, 'Logitech', 75000, 'blanco', 'mouse');
+(14, 'Logitech', 123123, 'azul', 'Pad'),
+(15, 'Razer Deathadder', 60000, 'Negro', 'Mouse'),
+(16, 'Genius', 10000, 'Negro', 'Mouse'),
+(17, 'Glorious Model O', 55000, 'Blanco', 'Mouse'),
+(18, 'Razer Gigantus V2', 13000, 'Negro', 'Pad'),
+(19, 'Razer Barracuda X', 80000, 'Blanco', 'Auricular'),
+(20, 'HyperX Alloy', 54300, 'Negro', 'Teclado'),
+(21, 'Logitech G Wireless', 120000, 'Blanco', 'Auricular');
 
 -- --------------------------------------------------------
 
@@ -59,8 +65,29 @@ CREATE TABLE `tipo_periferico` (
 --
 
 INSERT INTO `tipo_periferico` (`id`, `id_periferico`) VALUES
-(1, 'mouse'),
-(2, 'teclado');
+(4, 'Auricular'),
+(2, 'Mouse'),
+(7, 'Pad'),
+(6, 'Teclado');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `username`, `password`) VALUES
+(1, 'webadmin', '$2y$10$BDJ57thWjoNmCgsgCr6R7.AIcWLU59C7HkOyUn9W0bbP4l2pDKgBW');
 
 --
 -- Índices para tablas volcadas
@@ -81,6 +108,13 @@ ALTER TABLE `tipo_periferico`
   ADD KEY `id_periferico` (`id_periferico`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -88,13 +122,19 @@ ALTER TABLE `tipo_periferico`
 -- AUTO_INCREMENT de la tabla `periferico`
 --
 ALTER TABLE `periferico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_periferico`
 --
 ALTER TABLE `tipo_periferico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -104,7 +144,7 @@ ALTER TABLE `tipo_periferico`
 -- Filtros para la tabla `periferico`
 --
 ALTER TABLE `periferico`
-  ADD CONSTRAINT `periferico_ibfk_1` FOREIGN KEY (`id_periferico`) REFERENCES `tipo_periferico` (`id_periferico`);
+  ADD CONSTRAINT `periferico_ibfk_1` FOREIGN KEY (`id_periferico`) REFERENCES `tipo_periferico` (`id_periferico`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
