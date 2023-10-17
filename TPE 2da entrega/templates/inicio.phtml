@@ -1,0 +1,53 @@
+<?php if (isset($_SESSION['USER_ID'])) :
+  require_once 'templates/formPeriferico.phtml';
+endif
+?>
+
+<table class="table table-striped-columns">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Marca</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Color</th>
+      <th scope="col">Categoria</th>
+      <?php if (isset($_SESSION['USER_ID'])) : ?>
+        <th scope="col">Operaciones</th>
+      <?php endif ?>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($perifericos as $periferico) : ?>
+      <tr>
+        <th scope="row"> <?= $periferico->id ?> </th>
+        <td> <a href="showEspecifico/<?= $periferico->id ?>"><?= $periferico->marca ?> </a> </td>
+        <td> <?= $periferico->precio ?> </td>
+        <td> <?= $periferico->color ?> </td>
+        <td> <?= $periferico->id_periferico ?> </td>
+        <?php if (isset($_SESSION['USER_ID'])) : ?>
+          <td> <a href="eliminarPeriferico/<?= $periferico->id ?>" type="button" class='btn btn-danger ml-auto'>Borrar</a>
+            <a href="buttonEdit/<?= $periferico->id ?>" type="button" class='btn btn-warning ml-auto'>Editar</a>
+          </td>
+        <?php endif ?>
+      </tr>
+    <?php endforeach ?>
+  </tbody>
+</table>
+
+
+<div class="ml-7">
+  <form action="filtrarItemsCategoria" method="POST">
+  
+    <div class="col-2">
+      <div class="form-group text-center">
+        <label>Categoria</label>
+        <select required name="categoria" class="form-control text-center">
+          <?php foreach ($categorys as $cat) : ?>
+            <option value="<?= $cat->id_periferico ?>"> <?= $cat->id_periferico ?> </option>
+          <?php endforeach ?>
+        </select>
+      </div>
+    </div>
+    <button type="submit" class='btn btn-danger ml-auto my-2'>Filtrar</button>
+  </form>
+</div>

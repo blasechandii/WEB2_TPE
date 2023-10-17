@@ -1,0 +1,43 @@
+<?php
+require_once 'templates/header.phtml';
+?>
+
+<?php if(isset($_SESSION['USER_ID'])) :
+require_once 'templates/formAddCategorys.phtml';
+endif
+?>
+
+
+
+<table class="table table-striped-columns">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+
+            <th scope="col">Categoria</th>
+            <?php if(isset($_SESSION['USER_ID'])) : ?>
+            <th scope="col">Operaciones</th>
+            <?php endif ?>
+        
+
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($categorys as $category) : ?>
+            <tr>
+                <th scope="row"> <?= $category->id ?> </th>
+                <td> <?= $category->id_periferico ?> </td>
+                <?php if(isset($_SESSION['USER_ID'])) : ?>
+                <td> <a href="eliminarCategoria/<?= $category->id_periferico ?>" type="button" class='btn btn-danger ml-auto'>Borrar</a>
+                    <a href="buttonEditCategoria/<?= $category->id ?>" type="button" class='btn btn-warning ml-auto'>Editar</a>
+                </td>
+                <?php endif ?>
+            </tr>
+        <?php endforeach ?>
+    </tbody>
+</table>
+
+
+<?php
+require_once 'templates/footer.phtml';
+?>

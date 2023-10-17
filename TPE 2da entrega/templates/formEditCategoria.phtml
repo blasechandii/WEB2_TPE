@@ -1,0 +1,28 @@
+<form action="editarCategoria/<?= $tipo->id ?>" method="POST" class="my-4">
+    <div class="col-2 text-center">
+        <div class="form-group">
+            <div class="form-group">
+                <label>Categoria</label>
+                <input required name="categoria" type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <button type="submit" class="btn btn-warning mt-2">Enviar</button>
+</form>
+
+<table class="table table-striped-columns">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Categoria</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row"> <?= $tipo->id ?> </th>
+            <td> <?= $tipo->id_periferico ?> </td>
+        </tr>
+    </tbody>
+</table>

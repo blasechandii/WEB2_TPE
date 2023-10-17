@@ -1,0 +1,41 @@
+
+
+<form action="editarPeriferico/<?= $id ?>" method="POST" class="my-4">
+    <div class="row text-center">
+        <div class="col-3">
+            <div class="form-group">
+                <label>Marca</label>
+                <input  name="marca" type="text" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="form-group">
+                <label>Precio</label>
+                <input required name="precio" type="number" class="form-control">
+            </div>
+
+        </div><div class="col-3">
+            <div class="form-group">
+                <label>Color</label>
+                <input required name="color" type="text" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-2">
+            <div class="form-group">
+                <label>Categoria</label>
+                <select required name="categoria" class="form-control text-center">
+                <?php foreach ($categorys as $cat) : ?>
+                    <option value="<?= $cat->id_periferico ?>"> <?= $cat->id_periferico ?> </option>
+                <?php endforeach ?>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    
+    <button type="submit" class="btn btn-warning mt-2">Enviar</button>
+</form>
+
+<?php require_once './templates/filaPeriferico.phtml' ?>
